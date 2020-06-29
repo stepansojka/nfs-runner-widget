@@ -39,12 +39,12 @@ export const NfsRunnerWidget = (): ReactElement => {
           <img
             style={{visibility: 'hidden'}}
             id="offline-resources-1x"
-            src="http://wayou.github.io/t-rex-runner/assets/default_100_percent/100-offline-sprite.png"
+            src="https://wayou.github.io/t-rex-runner/assets/default_100_percent/100-offline-sprite.png"
           ></img>
           <img
             style={{visibility: 'hidden'}}
             id="offline-resources-2x"
-            src="http://wayou.github.io/t-rex-runner/assets/default_200_percent/200-offline-sprite.png"
+            src="https://wayou.github.io/t-rex-runner/assets/default_200_percent/200-offline-sprite.png"
           ></img>
           <template id="audio-resources">
             <audio

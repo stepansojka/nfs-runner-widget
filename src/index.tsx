@@ -21,7 +21,7 @@ const factory: BlockFactory = ({
   HTMLElement,
 }: typeof window = window): Function => {
   /**
-   *  <nfs-runner-widget message="world!"></nfs-runner-widget>
+   *  <nfs-runner-widget></nfs-runner-widget>
    */
   return class NfsRunnerWidgetBlock extends HTMLElement
     implements BlockElement {
@@ -42,7 +42,7 @@ const factory: BlockFactory = ({
     }
 
     public static get observedAttributes(): string[] {
-      return ["message"];
+      return [];
     }
 
     public attributeChangedCallback(): void {
@@ -66,7 +66,7 @@ const factory: BlockFactory = ({
 const definition: BlockDefinition = {
   name: "nfs-runner-widget",
   factory: factory,
-  attributes: ['message'],
+  attributes: [],
   blockLevel: 'block'
 };
 
