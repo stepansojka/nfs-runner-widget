@@ -29,6 +29,7 @@ export const NfsRunnerWidget = ({
   document.onkeydown = function (evt) {
     evt = evt || window.event;
     if (evt.keyCode == 32) {
+      evt.preventDefault()
       var box = document.getElementById("messageBox");
       box!.style.visibility = "hidden";
       new (window as any).Runner('.runner-wrapper');
