@@ -12,33 +12,23 @@
  */
 
 import React, { ReactElement } from "react";
-import { BlockAttributes } from "widget-sdk";
 //@ts-ignore
 import "./runner.js";
 
 /**
  * React Component
  */
-export interface NfsRunnerWidgetProps extends BlockAttributes {
-  message: string;
-}
-
-export const NfsRunnerWidget = ({
-  message,
-}: NfsRunnerWidgetProps): ReactElement => {
-  document.onkeydown = function (evt) {
-    evt = evt || window.event;
-    if (evt.keyCode == 32) {
-      evt.preventDefault()
-      var box = document.getElementById("messageBox");
-      box!.style.visibility = "hidden";
-      new (window as any).Runner('.runner-wrapper');
-    }
-  };
+export const NfsRunnerWidget = (): ReactElement => {
   return (
     <>
       <div id="messageBox" className="sendmessage">
-        <h1>Press Space to start</h1>
+        <button onClick={
+          ()=>{
+            var box = document.getElementById("messageBox");
+            box!.style.visibility = "hidden";
+            new (window as any).Runner('.runner-wrapper');
+          }
+        }>Click to Start</button>
         <div className="niokbutton"></div>
       </div>
       <div id="main-frame-error" className="interstitial-wrapper">
