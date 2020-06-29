@@ -13,7 +13,7 @@
 
 import React, { ReactElement } from "react";
 //@ts-ignore
-import "./runner.js";
+import {Runner} from "./runner.js";
 
 /**
  * React Component
@@ -26,7 +26,7 @@ export const NfsRunnerWidget = (): ReactElement => {
           ()=>{
             var box = document.getElementById("messageBox");
             box!.style.visibility = "hidden";
-            new (window as any).Runner('.runner-wrapper');
+            new Runner('.runner-wrapper');
           }
         }>Click to Start</button>
         <div className="niokbutton"></div>

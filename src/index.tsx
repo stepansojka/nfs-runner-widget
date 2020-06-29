@@ -15,7 +15,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { BlockElement, BlockFactory, BlockDefinition } from "widget-sdk";
-import { NfsRunnerWidgetProps, NfsRunnerWidget } from "./nfs-runner-widget";
+import { NfsRunnerWidget } from "./nfs-runner-widget";
 
 const factory: BlockFactory = ({
   HTMLElement,
@@ -29,10 +29,8 @@ const factory: BlockFactory = ({
       super();
     }
 
-    private get props(): NfsRunnerWidgetProps {
-      return {
-        message: this.getAttribute("message") || "",
-      };
+    private get props(): {} {
+      return {};
     }
 
     public connectedCallback(): void {
