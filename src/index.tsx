@@ -16,6 +16,7 @@ import ReactDOM from "react-dom";
 
 import { BlockElement, BlockFactory, BlockDefinition } from "widget-sdk";
 import { NfsRunnerWidget } from "./nfs-runner-widget";
+import { author, version } from '../package.json';
 
 const factory: BlockFactory = ({
   HTMLElement,
@@ -63,11 +64,16 @@ const factory: BlockFactory = ({
   };
 };
 
-const definition: BlockDefinition = {
+const blockDefinition: BlockDefinition = {
   name: "nfs-runner-widget",
   factory: factory,
   attributes: [],
-  blockLevel: 'block'
+  blockLevel: 'block',
+  configurationSchema: {}
 };
 
-window.defineBlock(definition);
+window.defineBlock({
+  blockDefinition,
+  author,
+  version,
+});

@@ -8,6 +8,7 @@
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "baseUrl": "src",
     "paths": {
       "widget-sdk": ["../node_modules/@staffbase/widget-sdk"]
