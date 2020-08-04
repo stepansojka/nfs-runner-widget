@@ -14,18 +14,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { BlockElement, BlockFactory, BlockDefinition } from "widget-sdk";
+import { BlockFactory, BlockDefinition, BaseBlock } from "widget-sdk";
 import { NfsRunnerWidget } from "./nfs-runner-widget";
-import { author, version } from '../package.json';
+import { author, version } from "../package.json";
 
-const factory: BlockFactory = ({
-  HTMLElement,
-}: typeof window = window): Function => {
+const factory: BlockFactory = <T extends BaseBlock>(
+  Base: new () => T
+): Function => {
   /**
    *  <nfs-runner-widget></nfs-runner-widget>
    */
-  return class NfsRunnerWidgetBlock extends HTMLElement
-    implements BlockElement {
+  // @ts-ignore
+  return class NfsRunnerWidgetBlock extends Base {
     public constructor() {
       super();
     }
@@ -34,46 +34,32 @@ const factory: BlockFactory = ({
       return {};
     }
 
-    public connectedCallback(): void {
-      this.reactRender();
-    }
-
-    private reactRender(): void {
-      ReactDOM.render(<NfsRunnerWidget {...this.props} />, this);
-    }
-
     public static get observedAttributes(): string[] {
       return [];
     }
 
-    public attributeChangedCallback(): void {
-      this.reactRender();
+    renderBlock(container: HTMLElement): void {
+      ReactDOM.render(<NfsRunnerWidget {...this.props} />, container);
     }
 
-    public adoptedCallback(): void {
-      // noop
-    }
-
-    public disconnectedCallback(): void {
-      ReactDOM.unmountComponentAtNode(this);
-    }
-
-    public unmount(): void {
-      ReactDOM.unmountComponentAtNode(this);
+    unmountBlock(container: HTMLElement): void {
+      ReactDOM.unmountComponentAtNode(container);
     }
   };
 };
 
 const blockDefinition: BlockDefinition = {
-  name: "nfs-runner-widget",
+  name: "stepan-runner-widget",
   factory: factory,
   attributes: [],
-  blockLevel: 'block',
+  blockLevel: "block",
   configurationSchema: {}
 };
+
+console.log("attr in widget", blockDefinition.attributes);
 
 window.defineBlock({
   blockDefinition,
   author,
-  version,
+  version
 });
