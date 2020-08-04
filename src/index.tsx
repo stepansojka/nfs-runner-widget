@@ -18,13 +18,10 @@ import { BlockFactory, BlockDefinition, BaseBlock } from "widget-sdk";
 import { NfsRunnerWidget } from "./nfs-runner-widget";
 import { author, version } from "../package.json";
 
-const factory: BlockFactory = <T extends BaseBlock>(
-  Base: new () => T
-): Function => {
+const factory: BlockFactory = (Base: new () => BaseBlock): Function => {
   /**
    *  <nfs-runner-widget></nfs-runner-widget>
    */
-  // @ts-ignore
   return class NfsRunnerWidgetBlock extends Base {
     public constructor() {
       super();
@@ -55,8 +52,6 @@ const blockDefinition: BlockDefinition = {
   blockLevel: "block",
   configurationSchema: {}
 };
-
-console.log("attr in widget", blockDefinition.attributes);
 
 window.defineBlock({
   blockDefinition,
