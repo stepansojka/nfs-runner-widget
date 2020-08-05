@@ -32,7 +32,7 @@ const factory: BlockFactory = (Base: new () => BaseBlock): Function => {
     }
 
     public static get observedAttributes(): string[] {
-      return [];
+      return ["widget-title"];
     }
 
     renderBlock(container: HTMLElement): void {
@@ -48,7 +48,7 @@ const factory: BlockFactory = (Base: new () => BaseBlock): Function => {
 const blockDefinition: BlockDefinition = {
   name: "stepan-runner-widget",
   factory: factory,
-  attributes: [],
+  attributes: ["widget-title"],
   blockLevel: "block",
   configurationSchema: {}
 };
