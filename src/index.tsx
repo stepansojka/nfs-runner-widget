@@ -14,25 +14,38 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { BlockFactory, BlockDefinition, BaseBlock } from "widget-sdk";
-import { NfsRunnerWidget } from "./nfs-runner-widget";
+import { BlockFactory, BlockDefinition } from "widget-sdk";
+import { NfsRunnerWidget, NfsRunnerWidgetProps } from "./nfs-runner-widget";
 import { author, version } from "../package.json";
 
-const factory: BlockFactory = (Base: new () => BaseBlock): Function => {
+const factory: BlockFactory = Base => {
   /**
    *  <nfs-runner-widget></nfs-runner-widget>
    */
   return class NfsRunnerWidgetBlock extends Base {
-    public constructor() {
+    private props: NfsRunnerWidgetProps = { name: "Dino" };
+
+    constructor() {
       super();
     }
 
-    private get props(): {} {
-      return {};
+    static get observedAttributes(): string[] {
+      return ["widget-title", "dinosaur-name"];
     }
 
-    public static get observedAttributes(): string[] {
-      return ["widget-title"];
+    attributeChangedCallback(
+      attributeName: string,
+      oldValue: string,
+      newValue: string
+    ): void {
+      if (attributeName === "dinosaur-name") {
+        this.props = {
+          ...this.props,
+          name: newValue
+        };
+      } else {
+        super.attributeChangedCallback(attributeName, oldValue, newValue);
+      }
     }
 
     renderBlock(container: HTMLElement): void {
@@ -48,7 +61,7 @@ const factory: BlockFactory = (Base: new () => BaseBlock): Function => {
 const blockDefinition: BlockDefinition = {
   name: "stepan-runner-widget",
   factory: factory,
-  attributes: ["widget-title"],
+  attributes: ["widget-title", "dinosaur-name"],
   blockLevel: "block",
   configurationSchema: {}
 };

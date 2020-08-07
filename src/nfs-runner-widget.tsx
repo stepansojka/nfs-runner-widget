@@ -11,24 +11,32 @@
  * limitations under the License.
  */
 
-import React, { ReactElement } from "react";
+import React, { FunctionComponent } from "react";
 //@ts-ignore
-import {Runner} from "./runner.js";
+import { Runner } from "./runner.js";
+
+export interface NfsRunnerWidgetProps {
+  readonly name: string;
+}
 
 /**
  * React Component
  */
-export const NfsRunnerWidget = (): ReactElement => {
+export const NfsRunnerWidget: FunctionComponent<NfsRunnerWidgetProps> = ({
+  name
+}) => {
   return (
     <>
       <div id="messageBox" className="sendmessage">
-        <button onClick={
-          ()=>{
+        <button
+          onClick={() => {
             var box = document.getElementById("messageBox");
             box!.style.visibility = "hidden";
-            new Runner('.runner-wrapper');
-          }
-        }>Click to Start</button>
+            new Runner(".runner-wrapper");
+          }}
+        >
+          Run, {name}, run!
+        </button>
         <div className="niokbutton"></div>
       </div>
       <div id="main-frame-error" className="interstitial-wrapper">
@@ -37,12 +45,12 @@ export const NfsRunnerWidget = (): ReactElement => {
         </div>
         <div id="offline-resources">
           <img
-            style={{visibility: 'hidden'}}
+            style={{ visibility: "hidden" }}
             id="offline-resources-1x"
             src="https://wayou.github.io/t-rex-runner/assets/default_100_percent/100-offline-sprite.png"
           ></img>
           <img
-            style={{visibility: 'hidden'}}
+            style={{ visibility: "hidden" }}
             id="offline-resources-2x"
             src="https://wayou.github.io/t-rex-runner/assets/default_200_percent/200-offline-sprite.png"
           ></img>
