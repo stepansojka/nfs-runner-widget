@@ -34,7 +34,7 @@ const factory: BlockFactory = Base => {
     }
 
     get iconUrl(): string {
-      return "https://themommyavenger.files.wordpress.com/2015/12/jurassic-world-t-rex-vinylinfinity.jpg?w=150";
+      return "https://stepansojka.github.io/nfs-runner-widget/t-rex.jpg";
     }
 
     static get observedAttributes(): string[] {
