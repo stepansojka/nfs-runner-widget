@@ -29,16 +29,25 @@ const factory: BlockFactory = Base => {
       super();
     }
 
+    get widgetLabel(): string {
+      return "Dinosaur Game";
+    }
+
+    get iconUrl(): string {
+      return "https://themommyavenger.files.wordpress.com/2015/12/jurassic-world-t-rex-vinylinfinity.jpg?w=150";
+    }
+
     static get observedAttributes(): string[] {
-      return ["widget-title", "dinosaur-name"];
+      return ["widget-title", "on-card", "dinosaur-name"];
     }
 
     attributeChangedCallback(
       attributeName: string,
-      oldValue: string,
-      newValue: string
+      oldValue: string | undefined,
+      newValue: string | undefined
     ): void {
-      if (attributeName === "dinosaur-name") {
+      console.log("attribute changed", attributeName, newValue);
+      if (attributeName === "dinosaur-name" && newValue) {
         this.props = {
           ...this.props,
           name: newValue
@@ -61,7 +70,7 @@ const factory: BlockFactory = Base => {
 const blockDefinition: BlockDefinition = {
   name: "stepan-runner-widget",
   factory: factory,
-  attributes: ["widget-title", "dinosaur-name"],
+  attributes: ["widget-title", "on-card", "dinosaur-name"],
   blockLevel: "block",
   configurationSchema: {}
 };
