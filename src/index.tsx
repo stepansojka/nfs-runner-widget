@@ -27,14 +27,8 @@ const factory: BlockFactory = Base => {
 
     constructor() {
       super();
-    }
 
-    get widgetLabel(): string {
-      return "Dinosaur Game";
-    }
-
-    get iconUrl(): string {
-      return "https://stepansojka.github.io/nfs-runner-widget/t-rex.jpg";
+      console.log(new Error().stack);
     }
 
     static get observedAttributes(): string[] {
@@ -72,7 +66,9 @@ const blockDefinition: BlockDefinition = {
   factory: factory,
   attributes: ["widget-title", "on-card", "dinosaur-name"],
   blockLevel: "block",
-  configurationSchema: {}
+  configurationSchema: {},
+  label: "Dinosaur Game",
+  iconUrl: "https://stepansojka.github.io/nfs-runner-widget/t-rex.jpg"
 };
 
 window.defineBlock({
